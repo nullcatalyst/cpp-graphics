@@ -104,7 +104,7 @@ namespace graphics::metal {
             for (int i = 0; i < desc.vertexDesc->layoutCount; ++i) {
                 const BufferLayout & layout = desc.vertexDesc->layouts[i];
                 vertexDescriptor.layouts[layout.bufferIndex].stride         = layout.stride;
-                vertexDescriptor.layouts[layout.bufferIndex].stepRate       = layout.stepRate;
+                vertexDescriptor.layouts[layout.bufferIndex].stepRate       = 1;
                 vertexDescriptor.layouts[layout.bufferIndex].stepFunction   = convert(layout.stepFunction);
             }
         }

@@ -71,7 +71,6 @@ namespace graphics {
     struct BufferLayout {
         uint32_t                bufferIndex;
         uint32_t                stride;
-        uint32_t                stepRate;
         StepFunction            stepFunction;
     };
 

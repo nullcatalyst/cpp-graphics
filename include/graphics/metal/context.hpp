@@ -44,7 +44,16 @@ namespace graphics::metal {
         constexpr uint32_t getNextFrame()   const { return (_frame + 1) % BUFFER_COUNT; }
 
         StaticBuffer * createStaticBuffer(uint32_t size, uint32_t count, const void * data);
+        template <typename T>
+        StaticBuffer * createStaticBuffer(uint32_t count, const T * data) {
+            return createStaticBuffer(sizeof(T), count, data);
+        }
+
         DynamicBuffer * createDynamicBuffer(uint32_t size, uint32_t capacity);
+        template <typename T>
+        DynamicBuffer * createDynamicBuffer(uint32_t capacity) {
+            return createDynamicBuffer(sizeof(T), capacity);
+        }
 
         Texture * createTexture(const TextureDesc & textureDesc);
         Texture * loadTexture(const char * textureName);

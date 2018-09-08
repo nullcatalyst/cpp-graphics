@@ -14,12 +14,16 @@
 
 #if GRAPHICS_USE_METAL
     #include "graphics/metal/context.hpp"
-    namespace graphics = graphics::metal;
+    namespace graphics {
+        using namespace metal;
+    }
 #endif
 
 #if GRAPHICS_USE_OPENGL
     #include "graphics/opengl/graphics.hpp"
-    namespace graphics = graphics::opengl;
+    namespace graphics {
+        using namespace opengl;
+    }
 #endif
 
 #endif /* graphics_graphics_hpp */

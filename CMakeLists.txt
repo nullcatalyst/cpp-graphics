@@ -9,8 +9,10 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-option(BACKEND_METAL    "Build the Metal backend"   ON)
-option(BACKEND_OPENGL   "Build the OpenGL backend"  OFF)
+option(BACKEND_METAL    "Build the Metal backend"       ON)
+option(BACKEND_OPENGL   "Build the OpenGL backend"      OFF)
+
+option(BUILD_EXAMPLES   "Build the example projects"    ON)
 
 # TARGET
 
@@ -31,6 +33,11 @@ if(BACKEND_METAL)
         "-fobjc-arc"
     )
 
+    target_compile_definitions(graphics
+    PUBLIC
+        GRAPHICS_USE_METAL=1
+    )
+
     target_sources(graphics
     PRIVATE
         src/graphics/metal/context.mm
@@ -44,8 +51,21 @@ if(BACKEND_METAL)
 endif()
 
 if(BACKEND_OPENGL)
+    target_compile_definitions(graphics
+    PUBLIC
+        GRAPHICS_USE_OPENGL=1
+    )
+
     target_sources(graphics
     PRIVATE
         # src/graphics/opengl/*
     )
+endif()
+
+# EXAMPLES
+
+if(BUILD_EXAMPLES)
+    if(BACKEND_METAL)
+        add_subdirectory(examples/hello_metal)
+    endif()
 endif()
