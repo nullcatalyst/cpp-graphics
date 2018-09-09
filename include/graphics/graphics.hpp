@@ -20,7 +20,7 @@
 #endif
 
 #if GRAPHICS_USE_OPENGL
-    #include "graphics/opengl/graphics.hpp"
+    #include "graphics/opengl/context.hpp"
     namespace graphics {
         using namespace opengl;
     }
