@@ -207,7 +207,7 @@ namespace graphics::metal {
         _commandBuffer = nil;
     }
 
-    void Context::setBuffer(uint32_t id, StaticBuffer * buffer, uint32_t offset, bool forFragmentShader) {
+    void Context::setBuffer(uint32_t id, StaticBuffer * buffer, bool forFragmentShader) {
         ASSERT(buffer != nullptr, "");
 
         if (forFragmentShader) {
@@ -217,13 +217,13 @@ namespace graphics::metal {
         }
     }
 
-    void Context::setBuffer(uint32_t id, DynamicBuffer * buffer, uint32_t offset, bool forFragmentShader) {
+    void Context::setBuffer(uint32_t id, DynamicBuffer * buffer, bool forFragmentShader) {
         ASSERT(buffer != nullptr, "");
 
         if (forFragmentShader) {
-            [_renderEncoder setFragmentBuffer:buffer->_buffer offset:buffer->getOffset(_frame) + offset atIndex:id];
+            [_renderEncoder setFragmentBuffer:buffer->_buffer offset:buffer->getOffset(_frame) atIndex:id];
         } else {
-            [_renderEncoder setVertexBuffer:buffer->_buffer offset:buffer->getOffset(_frame) + offset atIndex:id];
+            [_renderEncoder setVertexBuffer:buffer->_buffer offset:buffer->getOffset(_frame) atIndex:id];
         }
     }
 

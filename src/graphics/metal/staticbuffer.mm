@@ -8,8 +8,4 @@ namespace graphics::metal {
     StaticBuffer::~StaticBuffer() {
         _buffer = nil;
     }
-
-    void * StaticBuffer::getData() {
-        return [_buffer contents];
-    }
 }

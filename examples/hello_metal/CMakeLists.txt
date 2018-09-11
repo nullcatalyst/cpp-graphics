@@ -11,6 +11,11 @@ else()
 
     add_executable(hello_metal)
 
+    set_target_properties(hello_metal
+    PROPERTIES
+        XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES
+    )
+
     target_compile_options(hello_metal
     PUBLIC
         "-fobjc-arc"

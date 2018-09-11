@@ -3,6 +3,8 @@
 
 @interface GLView : NSOpenGLView
 
+- (void) startRendering;
+- (void) stopRendering;
 - (void) drawFrame;
 
 @end

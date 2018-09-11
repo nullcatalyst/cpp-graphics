@@ -30,8 +30,6 @@ namespace graphics::metal {
 
         constexpr uint32_t getSize()     const { return _size;     }
         constexpr uint32_t getCapacity() const { return _capacity; }
-
-        void * getData();
     };
 }
 

@@ -49,6 +49,8 @@
     GLView * glView = [[GLView alloc] initWithFrame:window.contentView.frame];
     [window.contentView addSubview:glView];
 
+    [glView performSelectorOnMainThread:@selector(startRendering) withObject:nil waitUntilDone:FALSE];
+
     return window;
 }
 

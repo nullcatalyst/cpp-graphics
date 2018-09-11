@@ -1,13 +1,13 @@
 #ifndef util_debug_hpp
 #define util_debug_hpp
 
-#ifdef DEBUG
+#ifndef NDEBUG
     #include <cstdio> // fprintf, stderr
 
     #define ASSERT(cond, msg)           \
         do {                            \
             if (!(cond)) {              \
-                fprintf(stderr, "[%s:%d] Assert failed in %s(): %s\n", __FILE__, __LINE__, __func__, message); \
+                fprintf(stderr, "[%s:%d] Assert failed in %s(): %s\n", __FILE__, __LINE__, __func__, msg); \
                 abort();                \
             }                           \
         } while (0)

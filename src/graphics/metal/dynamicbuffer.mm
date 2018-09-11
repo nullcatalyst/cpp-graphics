@@ -37,11 +37,11 @@ namespace graphics::metal {
 #endif
     }
 
-    void DynamicBuffer::update(uint32_t frame, uint32_t startByte, uint32_t endByte) {
+    void DynamicBuffer::update(uint32_t frame, uint32_t offset, uint32_t length) {
 #if OS(mac)
         const NSRange range{
-            .location   = getOffset(frame) + startByte,
-            .length     = endByte - startByte,
+            .location   = getOffset(frame) + offset,
+            .length     = length,
         };
 
         [_buffer didModifyRange:range];

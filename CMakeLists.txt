@@ -28,6 +28,11 @@ PRIVATE
 # BACKENDS
 
 if(BACKEND_METAL)
+    set_target_properties(graphics
+    PROPERTIES
+        XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES
+    )
+
     target_compile_options(graphics
     PUBLIC
         "-fobjc-arc"
@@ -67,5 +72,9 @@ endif()
 if(BUILD_EXAMPLES)
     if(BACKEND_METAL)
         add_subdirectory(examples/hello_metal)
+    endif()
+
+    if(BACKEND_OPENGL AND APPLE)
+        add_subdirectory(examples/hello_macgl)
     endif()
 endif()

@@ -1,11 +1,14 @@
 #ifndef graphics_metal_context_hpp
 #define graphics_metal_context_hpp
 
+#include <cstdint> // uint32_t
+
 #ifdef __OBJC__
     #include <Metal/Metal.h>
     #include <MetalKit/MetalKit.h>
 #endif
 
+#include "graphics/descriptors.hpp"
 #include "graphics/metal/rendertarget.hpp"
 #include "graphics/metal/state.hpp"
 #include "graphics/metal/staticbuffer.hpp"
@@ -13,8 +16,6 @@
 #include "graphics/metal/texture.hpp"
 
 namespace graphics::metal {
-    constexpr uint32_t BUFFER_COUNT = 3;
-
     class Context {
 #ifdef __OBJC__
         dispatch_semaphore_t        _inFlightSemaphore;
@@ -69,8 +70,8 @@ namespace graphics::metal {
         void startFrame();
         void commitFrame();
 
-        void setBuffer(uint32_t id, StaticBuffer * buffer, uint32_t offset = 0, bool forFragmentShader = false);
-        void setBuffer(uint32_t id, DynamicBuffer * buffer, uint32_t offset = 0, bool forFragmentShader = false);
+        void setBuffer(uint32_t id, StaticBuffer * buffer, bool forFragmentShader = false);
+        void setBuffer(uint32_t id, DynamicBuffer * buffer, bool forFragmentShader = false);
         void setTexture(uint32_t id, Texture * texture, bool forFragmentShader = true);
 
         void drawTriangles(uint32_t count);

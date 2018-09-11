@@ -1,11 +1,11 @@
 #ifndef graphics_metal_dynamicbuffer_hpp
 #define graphics_metal_dynamicbuffer_hpp
 
+#include <cstdint> // uint32_t
+
 #ifdef __OBJC__
     #include <Metal/Metal.h>
 #endif
-
-#include "util/os.hpp"
 
 namespace graphics::metal {
     class Context;
@@ -42,7 +42,7 @@ namespace graphics::metal {
         }
 
         void update(uint32_t frame);
-        void update(uint32_t frame, uint32_t startByte, uint32_t endByte);
+        void update(uint32_t frame, uint32_t offset, uint32_t length);
 
         void * getData(uint32_t frame);
     };

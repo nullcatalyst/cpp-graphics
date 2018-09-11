@@ -4,6 +4,8 @@
 #include <cstdint> // uint32_t
 
 namespace graphics {
+    constexpr uint32_t BUFFER_COUNT = 3;
+
     enum class CompareFunction : uint32_t {
         Never                   = 0,
         Less                    = 1,
@@ -61,6 +63,21 @@ namespace graphics {
         Memoryless              = 2,
     };
 
+    enum class TextureFilter : uint32_t {
+        Nearest                 = 0,
+        Linear                  = 1,
+        NearestMipmapNearest    = 2,
+        NearestMipmapLinear     = 3,
+        LinearMipmapNearest     = 4,
+        LinearMipmapLinear      = 5,
+    };
+
+    enum class TextureWrap : uint32_t {
+        Clamp                   = 0,
+        Repeat                  = 1,
+        RepeatMirrored          = 2,
+    };
+
     struct VertexAttribute {
         uint32_t                id;
         VertexFormat            format;
@@ -110,10 +127,14 @@ namespace graphics {
     };
 
     struct TextureDesc {
-        uint32_t    width;
-        uint32_t    height;
-        PixelFormat format;
-        StorageHint storage;
+        uint32_t        width;
+        uint32_t        height;
+        PixelFormat     format;
+        StorageHint     storage;
+        TextureFilter   minFilter;
+        TextureFilter   magFilter;
+        TextureWrap     wrapX;
+        TextureWrap     wrapY;
     };
 }
 
