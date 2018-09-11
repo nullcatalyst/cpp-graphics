@@ -43,6 +43,13 @@ if(BACKEND_METAL)
         GRAPHICS_USE_METAL=1
     )
 
+    if(NOT APPLE)
+        target_sources(graphics
+        PRIVATE
+            src/graphics/opengl/glad.c
+        )
+    endif()
+
     target_sources(graphics
     PRIVATE
         src/graphics/metal/context.mm
@@ -63,7 +70,13 @@ if(BACKEND_OPENGL)
 
     target_sources(graphics
     PRIVATE
-        # src/graphics/opengl/*
+        src/graphics/opengl/context.cpp
+        # src/graphics/opengl/convert.cpp
+        src/graphics/opengl/rendertarget.cpp
+        src/graphics/opengl/state.cpp
+        src/graphics/opengl/staticbuffer.cpp
+        src/graphics/opengl/dynamicbuffer.cpp
+        src/graphics/opengl/texture.cpp
     )
 endif()
 
